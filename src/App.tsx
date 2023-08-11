@@ -9,6 +9,7 @@ function App() {
   const taskList = useMemo(() => {
     return (
       <ul id="task-list">
+        // TODO: MAKE INTO COMPONENT
         {task.map((task, index) => (
           <li className="task-element" key={index}>
             {task}
