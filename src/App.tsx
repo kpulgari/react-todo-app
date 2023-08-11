@@ -6,10 +6,11 @@ function App() {
   const name = "Jane Doe";
   const [task, setTask] = useState<string[]>([]);
 
+  /* The `useMemo` hook is used to memoize the result of a computation. In this case, it is used to
+memoize the rendering of the task list. */
   const taskList = useMemo(() => {
     return (
       <ul id="task-list">
-        // TODO: MAKE INTO COMPONENT
         {task.map((task, index) => (
           <li className="task-element" key={index}>
             {task}
@@ -19,6 +20,10 @@ function App() {
     );
   }, [task]);
 
+  /**
+   * The function `handleTaskSubmit` takes the value from an input element, adds it to an array of tasks,
+   * and clears the input element.
+   */
   const handleTaskSubmit = () => {
     const inputElement = document.querySelector(
       "#submit-task-bar"
@@ -32,6 +37,9 @@ function App() {
     }
   };
 
+  /**
+   * The function `handleClearList` removes all child elements from the "task-list" element.
+   */
   const handleClearList = () => {
     var taskList = document.getElementById("task-list");
 
