@@ -1,32 +1,28 @@
 import { useMemo, useState } from "react";
-import "./App.css";
-import { SubmitTask } from "./SubmitTask";
-import { TaskElement } from "./TaskElement";
+import "./styles/App.css";
+import { SubmitTask } from "./components/SubmitTask";
+import { TaskElement } from "./components/TaskElement";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const name = "Jane Doe";
-  const [task, setTask] = useState<string[]>([]);
+  const [taskList, setTaskList] = useState<string[]>([]);
+  const [inputEmpty, setInputEmpty] = useState(true);
+  const [listEmpty, setListEmpty] = useState(true);
 
-  /* The `useMemo` hook is used to memoize the result of a computation. In this case, it is used to
-memoize the rendering of the task list. */
-  const taskList = useMemo(() => {
+  const taskListMemo = useMemo(() => {
     return (
       <ul id="task-list">
-        {task.map((task, index) => (
+        {taskList.map((task, index) => (
           <TaskElement key={index} id={index.toString()}>
             {task}
           </TaskElement>
         ))}
       </ul>
     );
-  }, [task]);
+  }, [taskList]);
 
-  /**
-   * The function `handleTaskSubmit` takes the value from an input element, adds it to an array of tasks,
-   * and clears the input element.
-   */
   const handleTaskSubmit = () => {
     const inputElement = document.querySelector(
       "#submit-task-bar"
@@ -34,21 +30,23 @@ memoize the rendering of the task list. */
     const inputValue = inputElement?.value;
 
     if (inputValue) {
-      const updatedTasks = [...task, inputValue];
-      setTask(updatedTasks);
+      const updatedTasks = [...taskList, inputValue];
+      setTaskList(updatedTasks);
       inputElement.value = "";
+      setInputEmpty(true);
+      setListEmpty(false);
     }
   };
 
-  /**
-   * The function `handleClearList` removes all child elements from the "task-list" element.
-   */
-  const handleClearList = () => {
-    var taskList = document.getElementById("task-list");
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setInputEmpty(!event.target.value);
+  };
 
-    while (taskList?.firstChild) {
-      taskList.removeChild(taskList.firstChild);
-    }
+  const handleClearList = () => {
+    setTaskList([]);
+    setListEmpty(true);
   };
 
   return (
@@ -57,17 +55,18 @@ memoize the rendering of the task list. */
       <SubmitTask
         submitBarId="submit-task-bar"
         submitBarName="task"
-        submitButtonId="submit-task-button"
-        clearButtonId="clear-list-button"
+        submitButtonId={`submit-task-button${inputEmpty ? "-disabled" : ""}`}
+        clearButtonId={`clear-list-button${listEmpty ? "-disabled" : ""}`}
         onSubmitClick={handleTaskSubmit}
         onClearListClick={handleClearList}
+        onInputChange={handleInputChange}
         buttonIcon={
-          <FontAwesomeIcon icon={faCheck} style={{ color: "#ffffff" }} />
+          <FontAwesomeIcon icon={faCheck} style={{ color: "black" }} />
         }
       >
         Enter a task here
       </SubmitTask>
-      <div>{taskList}</div>
+      <div>{taskListMemo}</div>
     </div>
   );
 }

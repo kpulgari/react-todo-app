@@ -1,0 +1,86 @@
+#root {
+  --background-color: #edf2fb;
+  --component-background-color: #d7e3fc;
+  --component-shadow-color: #abc4ff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  height: 100vh;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: var(--background-color);
+}
+
+#todo-list-header {
+  font-size: 60px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: black;
+  background-color: var(--component-background-color);
+  border-radius: 100px;
+  box-shadow: 5px 5px var(--component-shadow-color);
+  padding-inline: 75px;
+}
+
+#submit-task-bar {
+  width: 40vw;
+  padding: 2.5px;
+  background-color: white;
+  border-radius: 100px;
+  border: none;
+  padding-left: 10px;
+  box-shadow: 5px 5px var(--component-shadow-color);
+}
+
+#submit-task-bar:focus {
+  outline: none;
+}
+
+.submit-button {
+  background-color: var(--component-background-color);
+  color: black;
+  border: none;
+  padding: 5px;
+  padding-inline: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: background-color 0.3s ease;
+  box-shadow: 5px 5px var(--component-shadow-color);
+}
+
+#submit-task-button-disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+#submit-task-button:hover {
+  background-color: green;
+}
+
+#submit-task-button.held {
+  background-color: green;
+  box-shadow: none;
+  translate: 5px 5px;
+}
+
+#clear-list-button-disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+#clear-list-button:hover {
+  background-color: rgb(200, 0, 0);
+}
+
+#clear-list-button.held {
+  background-color: rgb(200, 0, 0);
+  box-shadow: none;
+  translate: 5px 5px;
+}

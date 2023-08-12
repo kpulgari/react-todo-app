@@ -1,8 +1,5 @@
-import { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 
-/**
- * Props for the `SubmitTask` component.
- */
 interface Props {
   children: string;
   submitBarId: string;
@@ -12,6 +9,7 @@ interface Props {
   buttonIcon: ReactNode;
   onSubmitClick: () => void;
   onClearListClick: () => void;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const SubmitTask = ({
@@ -23,34 +21,35 @@ export const SubmitTask = ({
   buttonIcon,
   onSubmitClick,
   onClearListClick,
+  onInputChange,
 }: Props) => {
-  const submitButton = document.getElementById(submitButtonId);
+  const addButtonHeldListeners = (buttonId: string): void => {
+    const button = document.getElementById(buttonId);
 
-  submitButton?.addEventListener("mousedown", () => {
-    submitButton.classList.add("held");
-  });
+    button?.addEventListener("mousedown", () => {
+      button.classList.add("held");
+    });
 
-  submitButton?.addEventListener("mouseup", () => {
-    submitButton.classList.remove("held");
-  });
+    button?.addEventListener("mouseup", () => {
+      button.classList.remove("held");
+    });
 
-  const clearButton = document.getElementById(clearButtonId);
+    button?.addEventListener("mouseleave", () => {
+      button.classList.remove("held");
+    });
+  };
 
-  clearButton?.addEventListener("mousedown", () => {
-    clearButton.classList.add("held");
-  });
-
-  clearButton?.addEventListener("mouseup", () => {
-    clearButton.classList.remove("held");
-  });
+  addButtonHeldListeners(submitButtonId);
+  addButtonHeldListeners(clearButtonId);
 
   return (
     <div>
       <input
-        type="string"
+        type="text"
         placeholder={children}
         id={submitBarId}
         name={submitBarName}
+        onChange={onInputChange}
       />
       <button
         id={submitButtonId}
