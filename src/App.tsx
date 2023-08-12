@@ -1,6 +1,9 @@
 import { useMemo, useState } from "react";
 import "./App.css";
 import { SubmitTask } from "./SubmitTask";
+import { TaskElement } from "./TaskElement";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const name = "Jane Doe";
@@ -12,9 +15,9 @@ memoize the rendering of the task list. */
     return (
       <ul id="task-list">
         {task.map((task, index) => (
-          <li className="task-element" key={index}>
+          <TaskElement key={index} id={index.toString()}>
             {task}
-          </li>
+          </TaskElement>
         ))}
       </ul>
     );
@@ -55,9 +58,12 @@ memoize the rendering of the task list. */
         submitBarId="submit-task-bar"
         submitBarName="task"
         submitButtonId="submit-task-button"
-        clearButtonId="clear-tasks-button"
+        clearButtonId="clear-list-button"
         onSubmitClick={handleTaskSubmit}
         onClearListClick={handleClearList}
+        buttonIcon={
+          <FontAwesomeIcon icon={faCheck} style={{ color: "#ffffff" }} />
+        }
       >
         Enter a task here
       </SubmitTask>

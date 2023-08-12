@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 /**
  * Props for the `SubmitTask` component.
  */
@@ -7,6 +9,7 @@ interface Props {
   submitBarName: string;
   submitButtonId: string;
   clearButtonId: string;
+  buttonIcon: ReactNode;
   onSubmitClick: () => void;
   onClearListClick: () => void;
 }
@@ -31,9 +34,30 @@ export const SubmitTask = ({
   submitBarName,
   submitButtonId,
   clearButtonId,
+  buttonIcon,
   onSubmitClick,
   onClearListClick,
 }: Props) => {
+  const submitButton = document.getElementById(submitButtonId);
+
+  submitButton?.addEventListener("mousedown", () => {
+    submitButton.classList.add("held");
+  });
+
+  submitButton?.addEventListener("mouseup", () => {
+    submitButton.classList.remove("held");
+  });
+
+  const clearButton = document.getElementById(clearButtonId);
+
+  clearButton?.addEventListener("mousedown", () => {
+    clearButton.classList.add("held");
+  });
+
+  clearButton?.addEventListener("mouseup", () => {
+    clearButton.classList.remove("held");
+  });
+
   return (
     <div>
       <input
@@ -42,10 +66,18 @@ export const SubmitTask = ({
         id={submitBarId}
         name={submitBarName}
       />
-      <button id={submitButtonId} onClick={onSubmitClick}>
-        Submit
+      <button
+        id={submitButtonId}
+        onClick={onSubmitClick}
+        className="submit-button"
+      >
+        {buttonIcon}
       </button>
-      <button id={clearButtonId} onClick={onClearListClick}>
+      <button
+        id={clearButtonId}
+        onClick={onClearListClick}
+        className="submit-button"
+      >
         Clear List
       </button>
     </div>
