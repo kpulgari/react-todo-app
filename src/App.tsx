@@ -3,19 +3,45 @@ import "./styles/App.css";
 import { SubmitTask } from "./components/SubmitTask";
 import { TaskElement } from "./components/TaskElement";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faTrash,
+  faX,
+  faBell,
+  faBellSlash,
+} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const name = "Jane Doe";
   const [taskList, setTaskList] = useState<string[]>([]);
-  const [inputEmpty, setInputEmpty] = useState(true);
-  const [listEmpty, setListEmpty] = useState(true);
+  const [taskInputValue, setTaskInputValue] = useState("");
 
   const taskListMemo = useMemo(() => {
     return (
       <ul id="task-list">
         {taskList.map((task, index) => (
-          <TaskElement key={index} id={index.toString()}>
+          <TaskElement
+            key={index}
+            id={index.toString()}
+            doneIcon={
+              <FontAwesomeIcon icon={faCheck} style={{ color: "#000000" }} />
+            }
+            notDoneIcon={
+              <FontAwesomeIcon icon={faX} style={{ color: "#000000" }} />
+            }
+            removeIcon={
+              <FontAwesomeIcon icon={faTrash} style={{ color: "#000000" }} />
+            }
+            highlightIcon={
+              <FontAwesomeIcon icon={faBell} style={{ color: "#000000" }} />
+            }
+            notHighlightIcon={
+              <FontAwesomeIcon
+                icon={faBellSlash}
+                style={{ color: "#000000" }}
+              />
+            }
+          >
             {task}
           </TaskElement>
         ))}
@@ -24,29 +50,22 @@ function App() {
   }, [taskList]);
 
   const handleTaskSubmit = () => {
-    const inputElement = document.querySelector(
-      "#submit-task-bar"
-    ) as HTMLInputElement;
-    const inputValue = inputElement?.value;
+    if (taskInputValue.trim()) {
+      const updatedTasks = [...taskList, taskInputValue];
 
-    if (inputValue) {
-      const updatedTasks = [...taskList, inputValue];
       setTaskList(updatedTasks);
-      inputElement.value = "";
-      setInputEmpty(true);
-      setListEmpty(false);
+      setTaskInputValue("");
     }
   };
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    setInputEmpty(!event.target.value);
+    setTaskInputValue(event.target.value);
   };
 
   const handleClearList = () => {
     setTaskList([]);
-    setListEmpty(true);
   };
 
   return (
@@ -55,8 +74,10 @@ function App() {
       <SubmitTask
         submitBarId="submit-task-bar"
         submitBarName="task"
-        submitButtonId={`submit-task-button${inputEmpty ? "-disabled" : ""}`}
-        clearButtonId={`clear-list-button${listEmpty ? "-disabled" : ""}`}
+        submitButtonId="submit-task-button"
+        clearButtonId="clear-list-button"
+        taskList={taskList}
+        inputValue={taskInputValue}
         onSubmitClick={handleTaskSubmit}
         onClearListClick={handleClearList}
         onInputChange={handleInputChange}
