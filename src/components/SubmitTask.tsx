@@ -38,9 +38,16 @@ export const SubmitTask = ({
     };
   }, [submitButtonId, clearButtonId]);
 
+  const maxLength = 150;
+
+  const inputDisabled = `${!inputValue.trim() ? "disabled" : ""}`;
+  const taskListEmpty = `${!taskList.length ? "disabled" : ""}`;
+  const inputFull = `${inputValue.length === maxLength ? "full" : ""}`;
+
   return (
     <div>
       <input
+        className={`input ${inputDisabled} ${inputFull}`}
         type="text"
         placeholder={children}
         id={submitBarId}
@@ -52,19 +59,19 @@ export const SubmitTask = ({
           }
         }}
         value={inputValue}
-        maxLength={150}
+        maxLength={maxLength}
       />
       <button
         id={submitButtonId}
         onClick={onSubmitClick}
-        className={`submit-button submit ${!inputValue ? "disabled" : ""}`}
+        className={`submit-button submit ${inputDisabled}`}
       >
         {buttonIcon}
       </button>
       <button
         id={clearButtonId}
         onClick={onClearListClick}
-        className={`submit-button remove ${!taskList.length ? "disabled" : ""}`}
+        className={`submit-button remove ${taskListEmpty}`}
       >
         Clear List
       </button>

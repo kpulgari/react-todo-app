@@ -70,7 +70,9 @@ function App() {
 
   return (
     <div>
-      <h1 id="todo-list-header">{name}'s Todo List</h1>
+      <h1 className="todo-header-div" id="todo-list-header">
+        {name}'s Todo List
+      </h1>
       <SubmitTask
         submitBarId="submit-task-bar"
         submitBarName="task"

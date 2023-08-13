@@ -2,9 +2,13 @@
   --background-color: #edf2fb;
   --component-background-color: #d7e3fc;
   --component-shadow-color: #abc4ff;
-  --remove-color: #de3163;
-  --submit-color: #50c878;
+  --remove-color: #ffb9cc;
+  --remove-shadow-color: #db577d;
+  --submit-color: #aef5c6;
+  --submit-shadow-color: #50c878;
   --highlight-color: yellow;
+  --disabled-color: #ccc;
+  --disabled-shadow-color: #666;
 
   display: flex;
   flex-direction: column;
@@ -27,7 +31,7 @@
   padding-inline: 75px;
 }
 
-#submit-task-bar {
+.input {
   width: 40vw;
   padding: 10px;
   background-color: white;
@@ -37,6 +41,12 @@
   padding-left: 10px;
   box-shadow: 5px 5px var(--component-shadow-color);
   text-align: center;
+  transition: all 0.3s;
+}
+
+.input.full {
+  background-color: var(--remove-color);
+  box-shadow: 5px 5px var(--remove-shadow-color);
 }
 
 #submit-task-bar:focus {
@@ -52,15 +62,16 @@
   margin-left: 10px;
   cursor: pointer;
   border-radius: 100px;
-  transition: background-color 0.3s ease;
   box-shadow: 5px 5px var(--component-shadow-color);
+  transition: all 0.3s ease;
 }
 
 .submit-button.disabled {
-  background-color: #ccc;
-  color: #666;
+  background-color: var(--disabled-color);
+  color: var(--disabled-shadow-color);
   cursor: not-allowed;
   pointer-events: none;
+  box-shadow: 5px 5px var(--disabled-shadow-color);
 }
 
 .submit-button.held {
@@ -69,6 +80,7 @@
 
 .submit-button.submit:hover {
   background-color: var(--submit-color);
+  box-shadow: 5px 5px var(--submit-shadow-color);
 }
 
 .submit-button.submit.held {
@@ -79,6 +91,7 @@
 
 .submit-button.remove:hover {
   background-color: var(--remove-color);
+  box-shadow: 5px 5px var(--remove-shadow-color);
 }
 
 .submit-button.remove.held {
@@ -99,16 +112,25 @@
 
 .submit-button.task:hover {
   background-color: #ccc;
-  color: #666;
+  box-shadow: 5px 5px var(--disabled-shadow-color);
+}
+
+.submit-button.task.held {
+  box-shadow: none;
 }
 
 .submit-button.remove.task:hover {
   background-color: var(--remove-color);
+  box-shadow: 5px 5px var(--remove-shadow-color);
+}
+
+.submit-button.remove.task.held {
+  box-shadow: none;
 }
 
 .tasks-div {
   margin-top: 15px;
-  /* background-color: black; */
+  /* background-color: yellow; */
   flex-wrap: wrap;
   overflow-y: scroll;
   width: 50vw;
@@ -116,13 +138,14 @@
 }
 
 #task-list {
-  padding: 10px;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 .task-element {
   margin: 10px;
   padding: 20px;
-  font-size: 20px;
+  /* font-size: 120%; */
   background-color: white;
   border-radius: 100px;
   box-shadow: 5px 5px var(--component-shadow-color);
@@ -133,7 +156,7 @@
 }
 
 .submit-button.task {
-  font-size: 15px;
+  font-size: 100%;
 }
 
 .task-text.crossed {
