@@ -87,7 +87,7 @@ function App() {
       >
         Enter a task here
       </SubmitTask>
-      <div>{taskListMemo}</div>
+      <div className="tasks-div">{taskListMemo}</div>
     </div>
   );
 }

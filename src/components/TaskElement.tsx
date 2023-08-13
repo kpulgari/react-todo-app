@@ -28,6 +28,9 @@ export const TaskElement = ({
   const removeButtonId = `task-remove-button-${id}`;
   const highlightButtonId = `task-highlight-button-${id}`;
 
+  const crossClicked = crossTask ? "crossed" : "";
+  const highlightClicked = highlightTask ? "highlight" : "";
+
   const handleOnCompleteClick = () => {
     setCrossTask(!crossTask);
   };
@@ -55,15 +58,11 @@ export const TaskElement = ({
 
   return removeTask ? null : (
     <li className="task-element" id={`task-element-${id}`}>
-      <span
-        className={`task-text ${crossTask ? "crossed" : ""} ${
-          highlightTask ? "highlight" : ""
-        }`}
-      >
+      <span className={`task-text ${crossClicked} ${highlightClicked}`}>
         {children}
       </span>
       <button
-        className={`submit-button submit task ${crossTask ? "clicked" : ""}`}
+        className={`submit-button submit task ${crossClicked}`}
         id={doneButtonId}
         onClick={() => {
           handleOnCompleteClick();
@@ -72,9 +71,7 @@ export const TaskElement = ({
         {!crossTask ? doneIcon : notDoneIcon}
       </button>
       <button
-        className={`submit-button highlight task ${
-          highlightTask ? "clicked" : ""
-        }`}
+        className={`submit-button highlight task ${highlightClicked}`}
         id={highlightButtonId}
         onClick={() => {
           handleOnHighlightClick();

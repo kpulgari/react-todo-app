@@ -52,6 +52,7 @@ export const SubmitTask = ({
           }
         }}
         value={inputValue}
+        maxLength={150}
       />
       <button
         id={submitButtonId}
