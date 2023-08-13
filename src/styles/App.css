@@ -2,7 +2,9 @@
   --background-color: #edf2fb;
   --component-background-color: #d7e3fc;
   --component-shadow-color: #abc4ff;
-  --remove-color: rgb(200, 0, 0);
+  --remove-color: #de3163;
+  --submit-color: #50c878;
+  --highlight-color: yellow;
 
   display: flex;
   flex-direction: column;
@@ -61,12 +63,16 @@
   pointer-events: none;
 }
 
+.submit-button.held {
+  transition: all 0.2s;
+}
+
 .submit-button.submit:hover {
-  background-color: green;
+  background-color: var(--submit-color);
 }
 
 .submit-button.submit.held {
-  background-color: green;
+  background-color: var(--submit-color);
   box-shadow: none;
   translate: 5px 5px;
 }
@@ -82,11 +88,11 @@
 }
 
 .submit-button.highlight:hover {
-  background-color: yellow;
+  background-color: var(--highlight-color);
 }
 
 .submit-button.highlight.held {
-  background-color: yellow;
+  background-color: var(--highlight-color);
   box-shadow: none;
   translate: 5px 5px;
 }
@@ -100,13 +106,22 @@
   background-color: var(--remove-color);
 }
 
+.tasks-div {
+  margin-top: 15px;
+  /* background-color: black; */
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  width: 50vw;
+  max-height: 70vh;
+}
+
 #task-list {
   padding: 10px;
 }
 
 .task-element {
   margin: 10px;
-  padding: 10px;
+  padding: 20px;
   font-size: 20px;
   background-color: white;
   border-radius: 100px;
