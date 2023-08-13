@@ -2,6 +2,7 @@
   --background-color: #edf2fb;
   --component-background-color: #d7e3fc;
   --component-shadow-color: #abc4ff;
+  --remove-color: rgb(200, 0, 0);
 
   display: flex;
   flex-direction: column;
@@ -13,9 +14,9 @@
 }
 
 #todo-list-header {
-  font-size: 60px;
-  margin-top: 10px;
-  margin-bottom: 15px;
+  font-size: 50px;
+  margin-top: 15px;
+  margin-bottom: 20px;
   text-align: center;
   color: black;
   background-color: var(--component-background-color);
@@ -26,12 +27,14 @@
 
 #submit-task-bar {
   width: 40vw;
-  padding: 2.5px;
+  padding: 10px;
   background-color: white;
+  font-size: 20px;
   border-radius: 100px;
   border: none;
   padding-left: 10px;
   box-shadow: 5px 5px var(--component-shadow-color);
+  text-align: center;
 }
 
 #submit-task-bar:focus {
@@ -51,36 +54,77 @@
   box-shadow: 5px 5px var(--component-shadow-color);
 }
 
-#submit-task-button-disabled {
+.submit-button.disabled {
   background-color: #ccc;
   color: #666;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-#submit-task-button:hover {
+.submit-button.submit:hover {
   background-color: green;
 }
 
-#submit-task-button.held {
+.submit-button.submit.held {
   background-color: green;
   box-shadow: none;
   translate: 5px 5px;
 }
 
-#clear-list-button-disabled {
+.submit-button.remove:hover {
+  background-color: var(--remove-color);
+}
+
+.submit-button.remove.held {
+  background-color: var(--remove-color);
+  box-shadow: none;
+  translate: 5px 5px;
+}
+
+.submit-button.highlight:hover {
+  background-color: yellow;
+}
+
+.submit-button.highlight.held {
+  background-color: yellow;
+  box-shadow: none;
+  translate: 5px 5px;
+}
+
+.submit-button.task:hover {
   background-color: #ccc;
   color: #666;
-  cursor: not-allowed;
-  pointer-events: none;
 }
 
-#clear-list-button:hover {
-  background-color: rgb(200, 0, 0);
+.submit-button.remove.task:hover {
+  background-color: var(--remove-color);
 }
 
-#clear-list-button.held {
-  background-color: rgb(200, 0, 0);
-  box-shadow: none;
-  translate: 5px 5px;
+#task-list {
+  padding: 10px;
+}
+
+.task-element {
+  margin: 10px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 100px;
+  box-shadow: 5px 5px var(--component-shadow-color);
+}
+
+.task-text {
+  margin-left: 10px;
+}
+
+.submit-button.task {
+  font-size: 15px;
+}
+
+.task-text.crossed {
+  text-decoration: line-through;
+}
+
+.task-text.highlight {
+  background-color: yellow;
 }
