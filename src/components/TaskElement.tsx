@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import { addButtonHeldListeners } from "../utils/buttonHeld";
+import { useButtonHeldListeners } from "../hooks/useButtonHeldListeners";
 
 interface Props {
   children: string;
@@ -45,9 +45,9 @@ export const TaskElement = ({
   };
 
   useEffect(() => {
-    const cleanupCompleteButton = addButtonHeldListeners(doneButtonId);
-    const cleanupRemoveButton = addButtonHeldListeners(removeButtonId);
-    const cleanupHighlightButton = addButtonHeldListeners(highlightButtonId);
+    const cleanupCompleteButton = useButtonHeldListeners(doneButtonId);
+    const cleanupRemoveButton = useButtonHeldListeners(removeButtonId);
+    const cleanupHighlightButton = useButtonHeldListeners(highlightButtonId);
 
     return () => {
       cleanupCompleteButton();

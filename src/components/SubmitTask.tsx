@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import { addButtonHeldListeners } from "../utils/buttonHeld";
+import { useButtonHeldListeners } from "../hooks/useButtonHeldListeners";
 
 interface Props {
   children: string;
@@ -29,8 +29,8 @@ export const SubmitTask = ({
   onInputChange,
 }: Props) => {
   useEffect(() => {
-    const cleanupSubmitButton = addButtonHeldListeners(submitButtonId);
-    const cleanupClearButton = addButtonHeldListeners(clearButtonId);
+    const cleanupSubmitButton = useButtonHeldListeners(submitButtonId);
+    const cleanupClearButton = useButtonHeldListeners(clearButtonId);
 
     return () => {
       cleanupSubmitButton();

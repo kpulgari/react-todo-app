@@ -1,4 +1,4 @@
-export const addButtonHeldListeners = (buttonId: string): (() => void) => {
+export const useButtonHeldListeners = (buttonId: string): (() => void) => {
   const button = document.getElementById(buttonId);
 
   const handleMouseDown = () => {
