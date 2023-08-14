@@ -16,8 +16,14 @@ function App() {
   const [taskList, setTaskList] = useState<string[]>([]);
   const [taskInputValue, setTaskInputValue] = useState("");
 
+  const areTasksEmpty = !taskList.length;
+
   const taskListMemo = useMemo(() => {
-    return (
+    return areTasksEmpty ? (
+      <div className="task-element animation">
+        <span className="empty-tasks">List is empty. Add some more tasks!</span>
+      </div>
+    ) : (
       <ul id="task-list">
         {taskList.map((task, index) => (
           <TaskElement
@@ -89,7 +95,9 @@ function App() {
       >
         Enter a task here
       </SubmitTask>
-      <div className="tasks-div">{taskListMemo}</div>
+      <div className={`tasks-div ${areTasksEmpty ? "empty-tasks" : ""}`}>
+        {taskListMemo}
+      </div>
     </div>
   );
 }
