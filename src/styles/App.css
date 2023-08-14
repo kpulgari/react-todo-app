@@ -145,6 +145,7 @@
 #task-list {
   padding: 5px;
   margin-left: 10px;
+  width: 100%;
 }
 
 .task-element {

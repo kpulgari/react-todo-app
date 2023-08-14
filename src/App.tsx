@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
-  const name = "Jane Doe";
+  const name = "Most Sane Todo List";
   const [taskList, setTaskList] = useState<string[]>([]);
   const [taskInputValue, setTaskInputValue] = useState("");
 
@@ -77,7 +77,7 @@ function App() {
   return (
     <div>
       <h1 className="todo-header-div" id="todo-list-header">
-        {name}'s Todo List
+        {name}
       </h1>
       <SubmitTask
         submitBarId="submit-task-bar"
