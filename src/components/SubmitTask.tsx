@@ -64,14 +64,14 @@ export const SubmitTask = ({
       <button
         id={submitButtonId}
         onClick={onSubmitClick}
-        className={`submit-button submit ${inputDisabled}`}
+        className={`submit-button submit input ${inputDisabled}`}
       >
         {buttonIcon}
       </button>
       <button
         id={clearButtonId}
         onClick={onClearListClick}
-        className={`submit-button remove ${taskListEmpty}`}
+        className={`submit-button remove task-list ${taskListEmpty}`}
       >
         Clear List
       </button>

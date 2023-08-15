@@ -30,16 +30,28 @@ function App() {
             key={index}
             id={index.toString()}
             doneIcon={
-              <FontAwesomeIcon icon={faCheck} style={{ color: "#000000" }} />
+              <FontAwesomeIcon
+                icon={faCheck}
+                style={{ fontSize: "1vw", color: "#000000" }}
+              />
             }
             notDoneIcon={
-              <FontAwesomeIcon icon={faX} style={{ color: "#000000" }} />
+              <FontAwesomeIcon
+                icon={faX}
+                style={{ fontSize: "1vw", color: "#000000" }}
+              />
             }
             removeIcon={
-              <FontAwesomeIcon icon={faTrash} style={{ color: "#000000" }} />
+              <FontAwesomeIcon
+                icon={faTrash}
+                style={{ fontSize: "1vw", color: "#000000" }}
+              />
             }
             highlightIcon={
-              <FontAwesomeIcon icon={faBell} style={{ color: "#000000" }} />
+              <FontAwesomeIcon
+                icon={faBell}
+                style={{ fontSize: "1vw", color: "#000000" }}
+              />
             }
             notHighlightIcon={
               <FontAwesomeIcon
@@ -96,7 +108,7 @@ function App() {
         Enter a task here
       </SubmitTask>
       <div className={`tasks-div ${areTasksEmpty ? "empty-tasks" : ""}`}>
-        {taskListMemo}
+        <div className="scroll-content">{taskListMemo}</div>
       </div>
     </div>
   );

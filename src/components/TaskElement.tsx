@@ -58,36 +58,40 @@ export const TaskElement = ({
 
   return removeTask ? null : (
     <li className={`task-element ${crossClicked}`} id={`task-element-${id}`}>
-      <span className={`task-text ${crossClicked} ${highlightClicked}`}>
-        {children}
-      </span>
-      <button
-        className={`submit-button submit task ${crossClicked}`}
-        id={doneButtonId}
-        onClick={() => {
-          handleOnCompleteClick();
-        }}
-      >
-        {!crossTask ? doneIcon : notDoneIcon}
-      </button>
-      <button
-        className={`submit-button highlight task ${highlightClicked}`}
-        id={highlightButtonId}
-        onClick={() => {
-          handleOnHighlightClick();
-        }}
-      >
-        {!highlightTask ? highlightIcon : notHighlightIcon}
-      </button>
-      <button
-        className="submit-button remove task"
-        id={removeButtonId}
-        onClick={() => {
-          handleOnRemoveClick();
-        }}
-      >
-        {removeIcon}
-      </button>
+      <div className="task-text-div">
+        <span className={`task-text ${crossClicked} ${highlightClicked}`}>
+          {children}
+        </span>
+      </div>
+      <div className="task-buttons">
+        <button
+          className={`submit-button submit task ${crossClicked}`}
+          id={doneButtonId}
+          onClick={() => {
+            handleOnCompleteClick();
+          }}
+        >
+          {!crossTask ? doneIcon : notDoneIcon}
+        </button>
+        <button
+          className={`submit-button highlight task ${highlightClicked}`}
+          id={highlightButtonId}
+          onClick={() => {
+            handleOnHighlightClick();
+          }}
+        >
+          {!highlightTask ? highlightIcon : notHighlightIcon}
+        </button>
+        <button
+          className="submit-button remove task"
+          id={removeButtonId}
+          onClick={() => {
+            handleOnRemoveClick();
+          }}
+        >
+          {removeIcon}
+        </button>
+      </div>
     </li>
   );
 };
