@@ -6,7 +6,8 @@
   --remove-shadow-color: #db577d;
   --submit-color: #aef5c6;
   --submit-shadow-color: #50c878;
-  --highlight-color: yellow;
+  --highlight-color: rgb(252, 252, 153);
+  --highlight-shadow-color: rgb(224, 224, 109);
   --disabled-color: #ccc;
   --disabled-shadow-color: #666;
 
@@ -74,10 +75,6 @@
   box-shadow: 5px 5px var(--disabled-shadow-color);
 }
 
-.submit-button.held {
-  transition: all 0.2s;
-}
-
 .submit-button.submit:hover {
   background-color: var(--submit-color);
   box-shadow: 5px 5px var(--submit-shadow-color);
@@ -102,17 +99,12 @@
 
 .submit-button.highlight:hover {
   background-color: var(--highlight-color);
+  box-shadow: 5px 5px var(--highlight-shadow-color);
 }
 
 .submit-button.highlight.held {
-  background-color: var(--highlight-color);
   box-shadow: none;
   translate: 5px 5px;
-}
-
-.submit-button.task:hover {
-  background-color: #ccc;
-  box-shadow: 5px 5px var(--disabled-shadow-color);
 }
 
 .submit-button.task.held {
@@ -154,6 +146,12 @@
   background-color: var(--background-color);
   border-radius: 100px;
   box-shadow: 5px 5px var(--component-shadow-color);
+  transition: all 0.3s ease;
+}
+
+.task-element.crossed {
+  background-color: var(--disabled-color);
+  box-shadow: 5px 5px var(--disabled-shadow-color);
 }
 
 .task-text {

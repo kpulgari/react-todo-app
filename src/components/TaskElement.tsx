@@ -57,7 +57,7 @@ export const TaskElement = ({
   }, [doneButtonId, removeButtonId, highlightButtonId]);
 
   return removeTask ? null : (
-    <li className="task-element" id={`task-element-${id}`}>
+    <li className={`task-element ${crossClicked}`} id={`task-element-${id}`}>
       <span className={`task-text ${crossClicked} ${highlightClicked}`}>
         {children}
       </span>

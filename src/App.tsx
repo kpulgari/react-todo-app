@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
-  const name = "Most Sane Todo List";
+  const name = "My Todo List";
   const [taskList, setTaskList] = useState<string[]>([]);
   const [taskInputValue, setTaskInputValue] = useState("");
 
