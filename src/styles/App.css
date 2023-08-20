@@ -185,6 +185,7 @@
 .task-text-div {
   width: 75%;
   word-wrap: break-word;
+  padding: 5px;
 }
 
 .task-text {

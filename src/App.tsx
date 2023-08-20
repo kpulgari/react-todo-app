@@ -20,7 +20,7 @@ function App() {
 
   const taskListMemo = useMemo(() => {
     return areTasksEmpty ? (
-      <div className="task-element animation">
+      <div className="task-element">
         <span className="empty-tasks">List is empty. Add some more tasks!</span>
       </div>
     ) : (
